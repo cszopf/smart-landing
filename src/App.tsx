@@ -1,0 +1,62 @@
+
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+*/
+
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import ProblemSection from './components/ProblemSection';
+import OperationalDepth from './components/OperationalDepth';
+import ProductDeepDive from './components/ProductDeepDive';
+import Ecosystem from './components/Ecosystem';
+import TrustSecurity from './components/TrustSecurity';
+import PlatformMoat from './components/PlatformMoat';
+import Outcomes from './components/Outcomes';
+import FAQ from './components/FAQ';
+import Footer from './components/Footer';
+import Assistant from './components/Assistant';
+import { ViewState } from './types';
+
+function App() {
+  const [view, setView] = useState<ViewState>({ type: 'home' });
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    if (view.type !== 'home') setView({ type: 'home' });
+    
+    const element = document.getElementById(targetId);
+    if (element) {
+      const headerOffset = 85;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    } else if (targetId === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
+      <Navbar onNavClick={handleNavClick} />
+      
+      <main>
+        <Hero />
+        <ProblemSection />
+        <OperationalDepth />
+        <ProductDeepDive />
+        <Ecosystem />
+        <TrustSecurity />
+        <PlatformMoat />
+        <Outcomes />
+        <FAQ />
+      </main>
+
+      <Footer onNavClick={handleNavClick} />
+      <Assistant />
+    </div>
+  );
+}
+
+export default App;
