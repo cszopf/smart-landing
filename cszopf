@@ -5,7 +5,7 @@
 */
 
 import React, { useState } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero';
 import ProblemSection from './components/ProblemSection';
 import OperationalDepth from './components/OperationalDepth';
